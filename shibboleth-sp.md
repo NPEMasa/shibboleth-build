@@ -175,65 +175,73 @@ extendedKeyUsage = clientAuth
 " > /etc/shibboleth/sslcert/configs/openssl_sign.cnf
 
 --------------------
-# RootCA create
-
-cd /etc/shibboleth/sslcert/RootCA
-mkdir newcerts
-echo "01" > serial
-echo "00" > crlnumber
-touch index.txt
-
-openssl genrsa -out RootCA_key.pem -aes256 -passout pass:password 4096
-
-openssl req -new -out RootCA_csr.pem -key RootCA_key.pem -passin pass:password -subj "/C=JP/ST=example-ken/O=hogehoge-org/CN=root.example.com"
-
-
-openssl ca -config ../configs/openssl_sign.cnf -out RootCA_crt.pem -in RootCA_csr.pem -selfsign -keyfile RootCA_key.pem -passin pass:password -batch -extensions v3_ca 
-
-openssl x509 -in RootCA_crt.pem -out RootCA_crt.pem
---------------------
-# InterCA create
-
-cd /etc/shibboleth/sslcert/InterCA
-mkdir newcerts
-echo "01" > serial
-echo "00" > crlnumber
-touch index.txt
-
-openssl genrsa -out InterCA_key.pem -aes256 -passout pass:password 4096
-
-openssl req -new -out InterCA_csr.pem -key InterCA_key.pem -passin pass:password -subj "/C=JP/ST=example-ken/O=hogehoge-org/CN=inter.example.com"
-
-cd /etc/shibboleth/sslcert/RootCA
-openssl ca -config ../configs/openssl_sign.cnf -out ../InterCA/InterCA_crt.pem -in ../InterCA/InterCA_csr.pem -cert RootCA_crt.pem -keyfile RootCA_key.pem -passin pass:password -batch -extensions v3_ca
-cd /etc/shibboleth/sslcert/InterCA
-openssl x509 -in InterCA_crt.pem -out InterCA_crt.pem
-
-
-# Server cert create 
-openssl genrsa 4096 > server.key
-openssl req -new -key server.key -subj "/C=JP/ST=example-ken/O=hogehoge-org/CN=*.hogehoge.com" > server.csr
-openssl ca -config ../configs/openssl_sign.cnf -days 365 -cert InterCA_crt.pem -keyfile InterCA_key.pem -in server.csr > server.crt -passin pass:password -batch -extensions v3_ca
-
-# Chain cert create
-cat sslcert/InterCA/server.crt >> sslcert/certs/chain.crt
-cat sslcert/InterCA/InterCA_crt.pem >> sslcert/certs/chain.crt
-cat sslcert/RootCA/RootCA_crt.pem >> sslcert/certs/chain.crt 
-
-
+```
+## RootCA create
 
 ```shell
-firewall-cmd --add-service=http --zone=public --permanent 
-firewall-cmd --add-service=https --zone=public --permanent
-firewall-cmd --remove-service=dhcpv6-client --zone=public --permanent
-firewall-cmd --reload
+# cd /etc/shibboleth/sslcert/RootCA
+# mkdir newcerts
+# echo "01" > serial
+# echo "00" > crlnumber
+# touch index.txt
 
+# openssl genrsa -out RootCA_key.pem -aes256 -passout pass:password 4096
+
+# openssl req -new -out RootCA_csr.pem -key RootCA_key.pem -passin pass:password -subj "/C=JP/ST=example-ken/O=hogehoge-org/CN=root.example.com"
+
+
+# openssl ca -config ../configs/openssl_sign.cnf -out RootCA_crt.pem -in RootCA_csr.pem -selfsign -keyfile RootCA_key.pem -passin pass:password -batch -extensions v3_ca 
+
+# openssl x509 -in RootCA_crt.pem -out RootCA_crt.pem
+--------------------
+```
+
+## InterCA create
+
+```shell
+# cd /etc/shibboleth/sslcert/InterCA
+# mkdir newcerts
+# echo "01" > serial
+# echo "00" > crlnumber
+# touch index.txt
+
+# openssl genrsa -out InterCA_key.pem -aes256 -passout pass:password 4096
+
+# openssl req -new -out InterCA_csr.pem -key InterCA_key.pem -passin pass:password -subj "/C=JP/ST=example-ken/O=hogehoge-org/CN=inter.example.com"
+
+# cd /etc/shibboleth/sslcert/RootCA
+# openssl ca -config ../configs/openssl_sign.cnf -out ../InterCA/InterCA_crt.pem -in ../InterCA/InterCA_csr.pem -cert RootCA_crt.pem -keyfile RootCA_key.pem -passin pass:password -batch -extensions v3_ca
+# cd /etc/shibboleth/sslcert/InterCA
+# openssl x509 -in InterCA_crt.pem -out InterCA_crt.pem
+```
+
+## Server cert create 
+```shell
+# openssl genrsa 4096 > server.key
+# openssl req -new -key server.key -subj "/C=JP/ST=example-ken/O=hogehoge-org/CN=*.hogehoge.com" > server.csr
+# openssl ca -config ../configs/openssl_sign.cnf -days 365 -cert InterCA_crt.pem -keyfile InterCA_key.pem -in server.csr > server.crt -passin pass:password -batch -extensions v3_ca
+```
+
+## Chain cert create
+```shell
+# cat sslcert/InterCA/server.crt >> sslcert/certs/chain.crt
+# cat sslcert/InterCA/InterCA_crt.pem >> sslcert/certs/chain.crt
+# cat sslcert/RootCA/RootCA_crt.pem >> sslcert/certs/chain.crt 
+```
+
+## configure firewall
+```shell 
+# firewall-cmd --add-service=http --zone=public --permanent 
+# firewall-cmd --add-service=https --zone=public --permanent
+# firewall-cmd --remove-service=dhcpv6-client --zone=public --permanent
+# firewall-cmd --reload
 ```
 
 --------------------
-
-openssl req -new -newkey rsa:4096 -sha256 -days 365 -nodes -x509 -extensions v3_ca -keyout myCA.pem -out myCA.pem -config ../configs/openssl_sign.cnf 
-
+## create signed certificate 
+```shell
+# openssl req -new -newkey rsa:4096 -sha256 -days 365 -nodes -x509 -extensions v3_ca -keyout myCA.pem -out myCA.pem -config ../configs/openssl_sign.cnf 
+```
 
 
 
