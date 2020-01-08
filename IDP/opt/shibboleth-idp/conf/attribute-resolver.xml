@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+         GakuNin/ConfigTemplate/attribute-resolver-template.xml
+    version 3.4.0
+    
+    This file is a template provided by GakuNin.
+    Based on conf/attribute-resolver-full.xml
+    in Shibboleth IdP 3.4.4 distribution.
+-->
+<!--
+         This file is an EXAMPLE configuration file containing lots of commented
+    example attributes, encoders, and a couple of example data connectors.
+    
+    Not all attribute definitions or data connectors are demonstrated, but
+    a variety of LDAP attributes, some common to Shibboleth deployments and
+    many not, are included.
+    
+    Deployers should refer to the Identity Provider 3 documentation
+    
+    https://wiki.shibboleth.net/confluence/display/IDP30/AttributeResolverConfiguration
+    
+    for a complete list of components and their options.
+-->
+<AttributeResolver
+        xmlns="urn:mace:shibboleth:2.0:resolver"
+        xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+        xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc"
+        xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad"
+        xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
+        xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder"
+        xmlns:sec="urn:mace:shibboleth:2.0:security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                            urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                            urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                            urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                            urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                            urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+
+    <!-- ========================================== -->
+    <!--      Attribute Definitions                 -->
+    <!-- ========================================== -->
+
+    <!-- Schema: Core schema attributes -->
+
+    <!-- Attribute Definition for uid -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="uid">
+        <InputDataConnector ref="myLDAP" attributeNames="uid" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:uid" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:0.9.2342.19200300.100.1.1" friendlyName="uid" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for mail -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="mail">
+        <InputDataConnector ref="myLDAP" attributeNames="mail" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:mail" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:0.9.2342.19200300.100.1.3" friendlyName="mail" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for surname -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="surname">
+        <InputDataConnector ref="myLDAP" attributeNames="sn" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:sn" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.5.4.4" friendlyName="sn" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for organizationName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="organizationName">
+        <InputDataConnector ref="staticOrganizationName" attributeNames="o" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:o" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.5.4.10" friendlyName="o" encodeType="false" />
+    </AttributeDefinition>
+    -->
+    <!-- Static Connector for organizationName -->
+    <!--
+             <DataConnector id="staticOrganizationName" xsi:type="Static">
+        <Attribute id="o">
+            <Value>Test Organization</Value>
+        </Attribute>
+    </DataConnector>
+    -->
+
+    <!-- Attribute Definition for organizationalUnitName-->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="organizationalUnitName">
+        <InputDataConnector ref="myLDAP" attributeNames="ou" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:ou" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.5.4.11" friendlyName="ou" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for givenName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="givenName">
+        <InputDataConnector ref="myLDAP" attributeNames="givenName" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:givenName" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.5.4.42" friendlyName="givenName" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Schema: inetOrgPerson attributes -->
+
+    <!-- Attribute Definition for displayName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="displayName">
+        <InputDataConnector ref="myLDAP" attributeNames="displayName" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:displayName" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.16.840.1.113730.3.1.241" friendlyName="displayName" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Schema: eduPerson attributes -->
+
+    <!-- Attribute Definition for eduPersonAffiliation -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="eduPersonAffiliation">
+        <InputDataConnector ref="myLDAP" attributeNames="eduPersonAffiliation" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:eduPersonAffiliation" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.1" friendlyName="eduPersonAffiliation" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for eduPersonEntitlement -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="eduPersonEntitlement">
+        <InputDataConnector ref="staticEntitlementCommonLibTerms" attributeNames="eduPersonEntitlement" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:eduPersonEntitlement" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.7" friendlyName="eduPersonEntitlement" encodeType="false" />
+    </AttributeDefinition>
+    -->
+    <!-- Static Connector for eduPersonEntitlement (common-lib-terms) -->
+    <!--
+             <DataConnector id="staticEntitlementCommonLibTerms" xsi:type="Static">
+        <Attribute id="eduPersonEntitlement">
+            <Value>urn:mace:dir:entitlement:common-lib-terms</Value>
+        </Attribute>
+    </DataConnector>
+    -->
+
+    <!-- Attribute Definition for eduPersonPrincipalName -->
+    <!-- -->
+    <AttributeDefinition xsi:type="Scoped" id="eduPersonPrincipalName" scope="%{idp.scope}">
+        <InputDataConnector ref="myLDAP" attributeNames="uid" />
+        <AttributeEncoder xsi:type="SAML1ScopedString" name="urn:mace:dir:attribute-def:eduPersonPrincipalName" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" friendlyName="eduPersonPrincipalName" encodeType="false" />
+    </AttributeDefinition>
+<!--    -->
+
+    <!-- Attribute Definition for eduPersonScopedAffiliation -->
+    <!--
+             <AttributeDefinition xsi:type="Scoped" id="eduPersonScopedAffiliation" scope="%{idp.scope}">
+        <InputDataConnector ref="myLDAP" attributeNames="eduPersonAffiliation" />
+        <AttributeEncoder xsi:type="SAML1ScopedString" name="urn:mace:dir:attribute-def:eduPersonScopedAffiliation" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.9" friendlyName="eduPersonScopedAffiliation" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for eduPersonAssurance -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="eduPersonAssurance">
+        <InputDataConnector ref="myLDAP" attributeNames="eduPersonAssurance" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:eduPersonAssurance" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.11" friendlyName="eduPersonAssurance" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for eduPersonUniqueId -->
+    <!--
+             <AttributeDefinition xsi:type="Scoped" id="eduPersonUniqueId" scope="%{idp.scope}">
+        <InputDataConnector ref="myLDAP" attributeNames="eduPersonUniqueId" />
+        <AttributeEncoder xsi:type="SAML1ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.13" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.13" friendlyName="eduPersonUniqueId" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for eduPersonOrcid -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="eduPersonOrcid">
+        <InputDataConnector ref="myLDAP" attributeNames="eduPersonOrcid" />
+        <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:eduPersonOrcid" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.16" friendlyName="eduPersonOrcid" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Attribute Definition for eduPersonTargetedID (computedID) -->
+    <!--
+             <AttributeDefinition xsi:type="SAML2NameID" id="eduPersonTargetedID" nameIdFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">
+        <InputDataConnector ref="computedID" attributeNames="computedID" />
+        <AttributeEncoder xsi:type="SAML1XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" friendlyName="eduPersonTargetedID" encodeType="false" />
+    </AttributeDefinition>
+    -->
+    <!-- Pseudo Attribute Definition for %{idp.persistentId.sourceAttribute} -->
+    <!--
+                 Uncomment this if there is an attribute named %{idp.persistentId.sourceAttribute}
+        only on LDAP and you don't already have an Attribute Definition for it.
+    -->
+    <!--
+             <AttributeDefinition id="%{idp.persistentId.sourceAttribute}" xsi:type="Simple">
+        <InputDataConnector ref="myLDAP" attributeNames="%{idp.persistentId.sourceAttribute}" />
+    </AttributeDefinition>
+    -->
+    <!-- Computed targeted ID connector -->
+    <!--
+             <DataConnector id="computedID" xsi:type="ComputedId"
+                   generatedAttributeID="computedID"
+                   salt="%{idp.persistentId.salt}"
+                   algorithm="%{idp.persistentId.algorithm:SHA}"
+                   encoding="%{idp.persistentId.encoding:BASE64}">
+        <InputAttributeDefinition ref="%{idp.persistentId.sourceAttribute}" />
+    </DataConnector>
+    -->
+
+    <!-- Attribute Definition for eduPersonTargetedID (storedID) -->
+    <!--
+             <AttributeDefinition xsi:type="SAML2NameID" id="eduPersonTargetedID" nameIdFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">
+        <InputDataConnector ref="storedID" attributeNames="storedID" />
+        <AttributeEncoder xsi:type="SAML1XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" encodeType="false" />
+        <AttributeEncoder xsi:type="SAML2XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" friendlyName="eduPersonTargetedID" encodeType="false" />
+    </AttributeDefinition>
+    -->
+    <!-- Pseudo Attribute Definition for %{idp.persistentId.sourceAttribute} -->
+    <!--
+                 Uncomment this if there is an attribute named %{idp.persistentId.sourceAttribute}
+        only on LDAP and you don't already have an Attribute Definition for it.
+    -->
+    <!--
+             <AttributeDefinition id="%{idp.persistentId.sourceAttribute}" xsi:type="Simple">
+        <InputDataConnector ref="myLDAP" attributeNames="%{idp.persistentId.sourceAttribute}" />
+    </AttributeDefinition>
+    -->
+    <!-- Stored targeted ID connector -->
+    <!--
+                 Make sure of the following MyDataSource configuration in conf/global.xml in order to use
+        the below StoredIdConnector:
+
+          <bean id="MyDataSource"
+                class="org.apache.commons.dbcp2.BasicDataSource"
+                p:driverClassName="com.mysql.jdbc.Driver"
+                p:url="jdbc:mysql://localhost:3306/*****DB_NAME*****"
+                p:username="*****DB_USERNAME*****"
+                p:password="*****USER_PASSWORD*****"
+                p:maxTotal="10"
+                p:maxIdle="5"
+                p:maxWaitMillis="15000"
+                p:testOnBorrow="true"
+                p:validationQuery="select 1"
+                p:validationQueryTimeout="5" />
+
+        For more detail, see: https://meatwiki.nii.ac.jp/confluence/display/GakuNinShibInstall/StoredID
+    -->
+    <!--
+             <DataConnector id="storedID" xsi:type="StoredId"
+                   generatedAttributeID="storedID"
+                   salt="%{idp.persistentId.salt}"
+                   algorithm="%{idp.persistentId.algorithm:SHA}"
+                   encoding="%{idp.persistentId.encoding:BASE64}">
+        <InputAttributeDefinition ref="%{idp.persistentId.sourceAttribute}" />
+        <BeanManagedConnection>MyDataSource</BeanManagedConnection>
+    </DataConnector>
+    -->
+
+    <!-- Schema: eduMember attributes -->
+
+    <!-- Definition of isMemberOf (LDAP) -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="isMemberOf">
+        <InputDataConnector ref="myLDAP" attributeNames="isMemberOf" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.5.1.1" friendlyName="isMemberOf" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Definition of isMemberOf (Mapped Attribute) -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="isMemberOf">
+        <InputAttributeDefinition ref="mappedIsMemberOf" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.5.1.1" friendlyName="isMemberOf" encodeType="false" />
+    </AttributeDefinition>
+
+    <AttributeDefinition xsi:type="Mapped" id="mappedIsMemberOf" dependencyOnly="true">
+        <InputDataConnector ref="myLDAP" attributeNames="uid" />
+        <ValueMap>
+            <ReturnValue>https://voplatform.example.ac.jp/gr/FooGroup</ReturnValue>
+            <SourceValue>test001</SourceValue>
+            <SourceValue>test002</SourceValue>
+            <SourceValue>test003</SourceValue>
+        </ValueMap>
+    </AttributeDefinition>
+    -->
+
+    <!-- Schema: GakuNin attributes -->
+
+    <!-- Definition of jaSurname -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="jaSurname">
+        <InputDataConnector ref="myLDAP" attributeNames="sn;lang-ja" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.32264.1.1.1" friendlyName="jasn" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Definition of jaGivenName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="jaGivenName">
+        <InputDataConnector ref="myLDAP" attributeNames="givenName;lang-ja" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.32264.1.1.2" friendlyName="jaGivenName" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Definition of jaDisplayName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="jaDisplayName">
+        <InputDataConnector ref="myLDAP" attributeNames="displayName;lang-ja" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.32264.1.1.3" friendlyName="jaDisplayName" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Definition of jaOrganizationName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="jaOrganizationName">
+        <InputDataConnector ref="staticJaOrganizationName" attributeNames="jao" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.32264.1.1.4" friendlyName="jao" encodeType="false" />
+    </AttributeDefinition>
+    -->
+    <!-- Static Connector for jaOrganizationName -->
+    <!--
+             <DataConnector id="staticJaOrganizationName" xsi:type="Static">
+        <Attribute id="jao">
+            <Value>テスト大学</Value>
+        </Attribute>
+    </DataConnector>
+    -->
+
+    <!-- Definition of jaOrganizationalUnitName -->
+    <!--
+             <AttributeDefinition xsi:type="Simple" id="jaOrganizationalUnitName">
+        <InputDataConnector ref="myLDAP" attributeNames="ou;lang-ja" />
+        <AttributeEncoder xsi:type="SAML2String" name="urn:oid:1.3.6.1.4.1.32264.1.1.5" friendlyName="jaou" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Definition of gakuninScopedPersonalUniqueCode (LDAP) -->
+    <!--
+             <AttributeDefinition xsi:type="Prescoped" id="gakuninScopedPersonalUniqueCode">
+        <InputDataConnector ref="myLDAP" attributeNames="gakuninScopedPersonalUniqueCode" />
+        <AttributeEncoder xsi:type="SAML2ScopedString" xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+            name="urn:oid:1.3.6.1.4.1.32264.1.1.6" friendlyName="gakuninScopedPersonalUniqueCode" encodeType="false" />
+    </AttributeDefinition>
+    -->
+
+    <!-- Definition of gakuninScopedPersonalUniqueCode (Template Attribute) -->
+    <!--
+             <AttributeDefinition xsi:type="Scoped" id="gakuninScopedPersonalUniqueCode" scope="%{idp.scope}">
+        <InputAttributeDefinition ref="templatePersonalUniqueCode" />
+        <AttributeEncoder xsi:type="SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.32264.1.1.6" friendlyName="gakuninScopedPersonalUniqueCode" encodeType="false" />
+    </AttributeDefinition>
+
+    <AttributeDefinition xsi:type="Template" id="templatePersonalUniqueCode">
+        <InputDataConnector ref="myLDAP" attributeNames="employeeNumber" />
+        <Template>
+            <![CDATA[
+                facultyorstaff:${employeeNumber}
+            ]]>
+        </Template>
+    </AttributeDefinition>
+    -->
+
+    <!-- ========================================== -->
+    <!--      Data Connectors                       -->
+    <!-- ========================================== -->
+
+    <!-- Example Relational Database Connector -->
+    <!--
+             <DataConnector id="mySIS" xsi:type="RelationalDatabase">
+        <SimpleManagedConnection jdbcDriver="oracle.jdbc.driver.OracleDriver"
+                                 jdbcURL="jdbc:oracle:thin:@db.example.org:1521:SomeDB"
+                                 jdbcUserName="myid"
+                                 jdbcPassword="mypassword" />
+        <QueryTemplate>
+            <![CDATA[
+                SELECT * FROM student WHERE gzbtpid = '$resolutionContext.principal'
+            ]]>
+        </QueryTemplate>
+
+        <Column columnName="gzbtpid" attributeID="uid" />
+        <Column columnName="fqlft" attributeID="gpa" />
+    </DataConnector>
+    -->
+
+    <!-- Example LDAP Connector -->
+    <!--
+                 Add the following configuration below the <DataConnector line in order
+        to use StartTLS (i.e. idp.attribute.resolver.LDAP.useStartTLS in
+        conf/ldap.properties is true) or LDAPS (i.e. you use "ldaps:" protocol
+        in idp.attribute.resolver.LDAP.ldapURL in conf/ldap.properties):
+
+          trustFile="%{idp.attribute.resolver.LDAP.trustCertificates}"
+    -->
+    <!-- -->
+    <DataConnector id="myLDAP" xsi:type="LDAPDirectory"
+        ldapURL="%{idp.attribute.resolver.LDAP.ldapURL}"
+        baseDN="%{idp.attribute.resolver.LDAP.baseDN}"
+        principal="%{idp.attribute.resolver.LDAP.bindDN}"
+        principalCredential="%{idp.attribute.resolver.LDAP.bindDNCredential}"
+        useStartTLS="%{idp.attribute.resolver.LDAP.useStartTLS:true}"
+        connectTimeout="%{idp.attribute.resolver.LDAP.connectTimeout}"
+        responseTimeout="%{idp.attribute.resolver.LDAP.responseTimeout}"
+        noResultIsError="%{idp.attribute.resolver.LDAP.noResultIsError:true}">
+        <FilterTemplate>
+            <![CDATA[
+                %{idp.attribute.resolver.LDAP.searchFilter}
+            ]]>
+        </FilterTemplate>
+        <ConnectionPool
+            minPoolSize="%{idp.pool.LDAP.minSize:3}"
+            maxPoolSize="%{idp.pool.LDAP.maxSize:10}"
+            blockWaitTime="%{idp.pool.LDAP.blockWaitTime:PT3S}"
+            validatePeriodically="%{idp.pool.LDAP.validatePeriodically:true}"
+            validateTimerPeriod="%{idp.pool.LDAP.validatePeriod:PT5M}"
+            expirationTime="%{idp.pool.LDAP.idleTime:PT10M}"
+            failFastInitialize="%{idp.pool.LDAP.failFastInitialize:false}" />
+    </DataConnector>
+    <!-- -->
+
+</AttributeResolver>
+

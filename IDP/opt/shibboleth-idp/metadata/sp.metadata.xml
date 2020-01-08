@@ -1,0 +1,34 @@
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata"  entityID="https://sp.hogehoge.com/secure">
+  <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol">
+    <Extensions>
+      <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://sp.hogehoge.com/Shibboleth.sso/DS" index="1" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"/>
+      <mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+        <mdui:DisplayName xml:lang="ja">サンプルSP</mdui:DisplayName>
+        <mdui:DisplayName xml:lang="en">Your SP</mdui:DisplayName>
+        <mdui:Description xml:lang="ja">サンプル用SPサイト</mdui:Description>
+        <mdui:Logo height="50" width="50">https://sp.hogehoge.com/logo/logo.jpg</mdui:Logo>
+        <mdui:InformationURL xml:lang="ja">https://sp.hogehoge.com/jp/</mdui:InformationURL>
+        <mdui:InformationURL xml:lang="en">https://sp.hogehoge.com/en/</mdui:InformationURL>
+      </mdui:UIInfo>
+    </Extensions>
+    <KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>
+-----BEGIN CERTIFICATE-----
+MIIFfDCCA2SgAwIBAgIBATANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJKUDEQ
+<AssertionConsumerService Location="https://sp.hogehoge.com/Shibboleth.sso/SAML/Artifact" index="5" Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01"/>
+  </SPSSODescriptor>
+  <Organization>
+    <OrganizationName xml:lang="en">Sample University</OrganizationName>
+    <OrganizationName xml:lang="ja">サンプル大学</OrganizationName>
+    <OrganizationDisplayName xml:lang="en">Your SP</OrganizationDisplayName>
+    <OrganizationDisplayName xml:lang="ja">サンプルSP</OrganizationDisplayName>
+    <OrganizationURL xml:lang="en">http://Your HomePage/</OrganizationURL>
+  </Organization>
+  <ContactPerson contactType="technical">
+    <GivenName>Your GivenName</GivenName>
+    <SurName>Your SurName</SurName>
+    <EmailAddress>mailto:admin@example.org</EmailAddress>
+  </ContactPerson>
+</EntityDescriptor>

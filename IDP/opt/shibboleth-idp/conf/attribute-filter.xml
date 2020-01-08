@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+         GakuNin/ConfigTemplate/attribute-filter-template-testfed.xml
+    version 3.4.0
+    
+    This file is a template provided by GakuNin.
+    Based on conf/attribute-filter.xml
+    in Shibboleth IdP 3.4.4 distribution.
+-->
+<!-- 
+         This file is an EXAMPLE policy file.  While the policy presented in this 
+    example file is illustrative of some simple cases, it relies on the names of
+    non-existent example services and the example attributes demonstrated in the
+    default attribute-resolver.xml file.
+    
+    This example does contain some usable "general purpose" policies that may be
+    useful in conjunction with specific deployment choices, but those policies may
+    not be applicable to your specific needs or constraints.
+-->
+<AttributeFilterPolicyGroup id="ShibbolethFilterPolicyForGakuNinTestFed"
+        xmlns="urn:mace:shibboleth:2.0:afp"
+        xmlns:afp="urn:mace:shibboleth:2.0:afp"
+        xmlns:basic="urn:mace:shibboleth:2.0:afp:mf:basic"
+        xmlns:saml="urn:mace:shibboleth:2.0:afp:mf:saml"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd
+                            urn:mace:shibboleth:2.0:afp:mf:basic http://shibboleth.net/schema/idp/shibboleth-afp-mf-basic.xsd
+                            urn:mace:shibboleth:2.0:afp:mf:saml http://shibboleth.net/schema/idp/shibboleth-afp-mf-saml.xsd">
+
+    <!-- Policy for test-sp1 -->
+    <!-- -->
+    <AttributeFilterPolicy id="samplesp">
+        <PolicyRequirementRule xsi:type="Requester" value="https://sp.example.ac.jp/secure" />
+
+        <AttributeRule attributeID="organizationName" permitAny="true" />
+
+        <AttributeRule attributeID="jaOrganizationName" permitAny="true" />
+
+        <AttributeRule attributeID="organizationalUnitName" permitAny="true" />
+
+        <AttributeRule attributeID="jaOrganizationalUnitName" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonPrincipalName" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonTargetedID" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonAffiliation" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonScopedAffiliation" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonEntitlement" permitAny="true" />
+
+        <AttributeRule attributeID="surname" permitAny="true" />
+
+        <AttributeRule attributeID="jaSurname" permitAny="true" />
+
+        <AttributeRule attributeID="givenName" permitAny="true" />
+
+        <AttributeRule attributeID="jaGivenName" permitAny="true" />
+
+        <AttributeRule attributeID="displayName" permitAny="true" />
+
+        <AttributeRule attributeID="jaDisplayName" permitAny="true" />
+
+        <AttributeRule attributeID="mail" permitAny="true" />
+
+        <AttributeRule attributeID="gakuninScopedPersonalUniqueCode" permitAny="true" />
+
+        <AttributeRule attributeID="isMemberOf" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonAssurance" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonUniqueId" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonOrcid" permitAny="true" />
+    </AttributeFilterPolicy>
+    <!-- -->
+
+    <!-- Policy for test-sp2 -->
+    <!-- -->
+    <AttributeFilterPolicy id="PolicyforGakuNinTestSP2">
+        <PolicyRequirementRule xsi:type="Requester" value="https://test-sp2.gakunin.nii.ac.jp/shibboleth-sp" />
+
+        <AttributeRule attributeID="organizationName" permitAny="true" />
+
+        <AttributeRule attributeID="jaOrganizationName" permitAny="true" />
+
+        <AttributeRule attributeID="organizationalUnitName" permitAny="true" />
+
+        <AttributeRule attributeID="jaOrganizationalUnitName" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonPrincipalName" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonTargetedID" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonAffiliation" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonScopedAffiliation" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonEntitlement" permitAny="true" />
+
+        <AttributeRule attributeID="surname" permitAny="true" />
+
+        <AttributeRule attributeID="jaSurname" permitAny="true" />
+
+        <AttributeRule attributeID="givenName" permitAny="true" />
+
+        <AttributeRule attributeID="jaGivenName" permitAny="true" />
+
+        <AttributeRule attributeID="displayName" permitAny="true" />
+
+        <AttributeRule attributeID="jaDisplayName" permitAny="true" />
+
+        <AttributeRule attributeID="mail" permitAny="true" />
+
+        <AttributeRule attributeID="gakuninScopedPersonalUniqueCode" permitAny="true" />
+
+        <AttributeRule attributeID="isMemberOf" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonAssurance" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonUniqueId" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonOrcid" permitAny="true" />
+    </AttributeFilterPolicy>
+    <!-- -->
+
+    <!-- Policy for test-sp3 -->
+    <!-- -->
+    <AttributeFilterPolicy id="PolicyforGakuNinTestSP3">
+        <PolicyRequirementRule xsi:type="Requester" value="https://test-sp3.gakunin.nii.ac.jp/shibboleth-sp" />
+
+        <AttributeRule attributeID="organizationName" permitAny="true" />
+
+        <AttributeRule attributeID="organizationalUnitName" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonPrincipalName" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonTargetedID" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonAffiliation" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonScopedAffiliation" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonEntitlement" permitAny="true" />
+
+        <AttributeRule attributeID="surname" permitAny="true" />
+
+        <AttributeRule attributeID="givenName" permitAny="true" />
+
+        <AttributeRule attributeID="displayName" permitAny="true" />
+
+        <AttributeRule attributeID="mail" permitAny="true" />
+
+        <AttributeRule attributeID="eduPersonOrcid" permitAny="true" />
+    </AttributeFilterPolicy>
+    <!-- -->
+
+</AttributeFilterPolicyGroup>
+

@@ -1,0 +1,88 @@
+<!-- IdP: Your Organization Name, Your IdP Site URL, Date -->
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://idp.hogehoge.com/idp/shibboleth">
+  <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">hogehoge.com</shibmd:Scope>
+      <mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+        <mdui:DisplayName xml:lang="ja">サンプルIdP</mdui:DisplayName>
+        <mdui:DisplayName xml:lang="en">Your IdP</mdui:DisplayName>
+        <mdui:Logo height="50" width="50">https://YourSite.ac.jp/logo/logo.jpg</mdui:Logo>
+        <mdui:InformationURL xml:lang="ja">https://www.hogehoge.com/jp/</mdui:InformationURL>
+        <mdui:InformationURL xml:lang="en">https://www.hogehoge.com/en/</mdui:InformationURL>
+        <mdui:PrivacyStatementURL xml:lang="ja">https://www.hogehoge.com/jp/privacy</mdui:PrivacyStatementURL>
+        <mdui:PrivacyStatementURL xml:lang="en">https://www.hogehoge.com/en/privacy</mdui:PrivacyStatementURL>
+        <mdui:Keywords xml:lang="en">category:location:others category:organizationType:others</mdui:Keywords>
+      </mdui:UIInfo>
+      <mdui:DiscoHints xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+        <mdui:IPHint>192.168.1.0/24</mdui:IPHint>
+        <mdui:DomainHint>hogehoge.com</mdui:DomainHint>
+        <mdui:GeolocationHint>geo:35.6924668,139.75810019999994</mdui:GeolocationHint>
+      </mdui:DiscoHints>
+    </Extensions>
+    <KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>
+-----BEGIN CERTIFICATE-----
+MIIFfDCCA2SgAwIBAgIBATANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJKUDEQ
+MA4GA1UECAwHU2hpbWFuZTEVMBMGA1UECgwMc2hpbWFuZS11bml2MRowGAYDVQQD
+DBFpbnRlci5leGFtcGxlLmNvbTAeFw0xOTEyMzEwNDQzNDlaFw0yMDEyMzAwNDQz
+5CGAVLOojiGvoGXhLthaFgjUnuVUt9aGH+KGOfBBEIjzhV2cP1JLhAv4N3Fg20ml
+ePbsS7gG7m50vzghssGHgrZsHFaPxfNUnkV203UG1F9LxiL/GKHRGCrP/Qah2mJd
+mLx5dbqnSVTBp67jiZB6cAOMb4nH8upwdPZy/6+0dEHuKeSxco9XcLyHHE6ZmLRG
+RLRWBm1VgMjkaZDIiwuZp+zNp52oNlq7m2t4JX05TVI/JpUs7AwlYXo29j+ezERv
+ggmmJ3pD81fsWBd600F4IEuzySEhXEni6uyzCnJ5NCaNpJKTQHJVNNmCAuqdMOh5
+RZPBBBzQ4euKiwR7vDfyLpvtFoDtg9Fw+ZA3p9nmcFcaA3sgnI0Zbn9OLMk4hTA9
+81naBUHCIn/drkOlEUguylQiUlel1ng7vYlWLz7UPecLcUhJI0P5Ha9w1iNuoeSm
+vjZUiH8T2IoSclVbF5uCNHt/Vuao6SlVR9aE9+csBs/L1WmPZopZuBEPMEyQn+N0
+MvEHJuaDdq28e2VLXujYZw==
+-----END CERTIFICATE-----
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+    <SingleSignOnService Location="https://idp.hogehoge.com/idp/profile/Shibboleth/SSO" Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest"/>
+    <SingleSignOnService Location="https://idp.hogehoge.com/idp/profile/SAML2/POST/SSO" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/>
+    <SingleSignOnService Location="https://idp.hogehoge.com/idp/profile/SAML2/Redirect/SSO" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/>
+  </IDPSSODescriptor>
+  <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">YourScope.ac.jp</shibmd:Scope>
+    </Extensions>
+    <KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>
+-----BEGIN CERTIFICATE-----
+MIIFfDCCA2SgAwIBAgIBATANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJKUDEQ
+MA4GA1UECAwHU2hpbWFuZTEVMBMGA1UECgwMc2hpbWFuZS11bml2MRowGAYDVQQD
+ggmmJ3pD81fsWBd600F4IEuzySEhXEni6uyzCnJ5NCaNpJKTQHJVNNmCAuqdMOh5
+RZPBBBzQ4euKiwR7vDfyLpvtFoDtg9Fw+ZA3p9nmcFcaA3sgnI0Zbn9OLMk4hTA9
+81naBUHCIn/drkOlEUguylQiUlel1ng7vYlWLz7UPecLcUhJI0P5Ha9w1iNuoeSm
+vjZUiH8T2IoSclVbF5uCNHt/Vuao6SlVR9aE9+csBs/L1WmPZopZuBEPMEyQn+N0
+MvEHJuaDdq28e2VLXujYZw==
+-----END CERTIFICATE-----
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <AttributeService Location="https://idp.hogehoge.com:8443/idp/profile/SAML1/SOAP/AttributeQuery" Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"/>
+    <AttributeService Location="https://idp.hogehoge.com:8443/idp/profile/SAML2/SOAP/AttributeQuery" Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"/>
+    <NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+  </AttributeAuthorityDescriptor>
+  <Organization>
+    <OrganizationName xml:lang="en">Sample University</OrganizationName>
+    <OrganizationName xml:lang="ja">サンプル大学</OrganizationName>
+    <OrganizationDisplayName xml:lang="en">Your IdP</OrganizationDisplayName>
+    <OrganizationDisplayName xml:lang="ja">サンプルIdP</OrganizationDisplayName>
+    <OrganizationURL xml:lang="en">http://Your HomePage/</OrganizationURL>
+  </Organization>
+  <ContactPerson contactType="technical">
+    <GivenName>Your GivenName</GivenName>
+    <SurName>Your SurName</SurName>
+    <EmailAddress>mailto:admin@example.org</EmailAddress>
+  </ContactPerson>
+</EntityDescriptor>
